@@ -3,12 +3,14 @@ package com.epam.xml.entity.version;
 import java.util.Objects;
 
 public class Version {
+    private VersionName versionName;
     private String pharm;
     private Certificate certificate;
     private MedicinePackage medicinePackage;
     private Dosage dosage;
 
-    public Version(String pharm, Certificate certificate, MedicinePackage medicinePackage, Dosage dosage) {
+    public Version(VersionName versionName, String pharm, Certificate certificate, MedicinePackage medicinePackage, Dosage dosage) {
+        this.versionName = versionName;
         this.pharm = pharm;
         this.certificate = certificate;
         this.medicinePackage = medicinePackage;
