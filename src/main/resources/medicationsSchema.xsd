@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
            targetNamespace="http://www.epamcourses.by/medicins"
-           xmlns:a="http://www.epamcourses.by/medicins"
-           elementFormDefault="qualified" >
+           xmlns:tns="http://www.epamcourses.by/medicins"
+           elementFormDefault="qualified">
 
-    <element name="medicine" type="a:medicine" abstract="true"/>
-    <element name="heart-medicine" type="a:heart-medicine" substitutionGroup="a:medicine"/>
-    <element name="vascular-medicine" type="a:vascular-medicine" substitutionGroup="a:medicine"/>
+    <element name="medicine" type="tns:medicine" abstract="true"/>
+    <element name="heart-medicine" type="tns:heart-medicine" substitutionGroup="tns:medicine"/>
+    <element name="vascular-medicine" type="tns:vascular-medicine" substitutionGroup="tns:medicine"/>
 
     <element name="medicins">
         <complexType>
             <sequence>
-                <element ref="a:medicine" maxOccurs="unbounded"/>
+                <element ref="tns:medicine" minOccurs="2" maxOccurs="unbounded"/>
             </sequence>
         </complexType>
     </element>
@@ -20,22 +20,22 @@
         <sequence>
             <element name="name" type="string"/>
             <element name="group" type="string"/>
-            <element name="analogs" type="a:analogs"/>
-            <element name="versions" type="a:versions"/>
+            <element name="analogs" type="tns:analogs"/>
+            <element name="versions" type="tns:versions"/>
         </sequence>
 
-        <attribute name="id" type="a:medicine-id" use="required"/>
+        <attribute name="id" type="tns:medicine-id" use="required"/>
     </complexType>
 
     <complexType name="heart-medicine">
         <complexContent>
-            <extension base="a:medicine"/>
+            <extension base="tns:medicine"/>
         </complexContent>
     </complexType>
 
     <complexType name="vascular-medicine">
         <complexContent>
-            <extension base="a:medicine"/>
+            <extension base="tns:medicine"/>
         </complexContent>
     </complexType>
 
@@ -53,18 +53,18 @@
 
     <complexType name="versions">
         <sequence>
-            <element name="version" type="a:version" maxOccurs="unbounded"/>
+            <element name="version" type="tns:version" maxOccurs="unbounded"/>
         </sequence>
     </complexType>
 
     <complexType name="version">
         <sequence>
-            <element name="certificate" type="a:certificate"/>
-            <element name="package" type="a:package"/>
-            <element name="dosage" type="a:dosage"/>
+            <element name="certificate" type="tns:certificate"/>
+            <element name="package" type="tns:package"/>
+            <element name="dosage" type="tns:dosage"/>
         </sequence>
 
-        <attribute name="version-name" type="a:version-name" use="required"/>
+        <attribute name="version-name" type="tns:version-name" use="required"/>
     </complexType>
 
     <simpleType name="version-name">
@@ -83,14 +83,14 @@
             <element name="expiry-date" type="date"/>
         </sequence>
 
-        <attribute name="number" type="a:medicine-id" use="required"/>
+        <attribute name="number" type="tns:medicine-id" use="required"/>
         <attribute name="registering-organization" type="string" use="optional" default="lekpharm"/>
     </complexType>
 
     <complexType name="dosage">
         <sequence>
             <element name="dose" type="positiveInteger"/>
-            <element name="medication-interval" type="a:medication-interval"/>
+            <element name="medication-interval" type="tns:medication-interval"/>
         </sequence>
     </complexType>
     
@@ -104,7 +104,7 @@
     
     <complexType name="package">
         <sequence>
-            <element name="type" type="a:package-type"/>
+            <element name="type" type="tns:package-type"/>
             <element name="capacity" type="positiveInteger"/>
             <element name="price" type="positiveInteger"/>
         </sequence>
