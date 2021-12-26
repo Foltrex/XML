@@ -1,9 +1,17 @@
 package com.epam.xml.entity.version;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Dosage", propOrder = {"dose", "medicationInterval"})
 public class Dosage {
+    @XmlElement(name = "dose", namespace = "http://www.epamcourses.by/medicins")
     private int dose;
+    @XmlElement(name = "medication-interval", namespace = "http://www.epamcourses.by/medicins")
     private int medicationInterval;
 
     /**

@@ -1,12 +1,19 @@
 package com.epam.xml.entity.version;
 
+import javax.xml.bind.annotation.*;
 import java.util.Calendar;
 import java.util.Objects;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Certificate", propOrder = {"number", "issueDate", "expiryDate", "registeringOrganization"})
 public class Certificate {
+    @XmlAttribute(name = "number")
     private int number;
+    @XmlElement(name = "issue-date", namespace = "http://www.epamcourses.by/medicins")
     private Calendar issueDate;
+    @XmlElement(name = "expiry-date", namespace = "http://www.epamcourses.by/medicins")
     private Calendar expiryDate;
+    @XmlElement(name = "registering-organization", namespace = "http://www.epamcourses.by/medicins")
     private String registeringOrganization;
 
     public Certificate(int number, Calendar issueDate, Calendar expiryDate, String registeringOrganization) {

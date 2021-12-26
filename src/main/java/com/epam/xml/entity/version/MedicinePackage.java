@@ -1,10 +1,19 @@
 package com.epam.xml.entity.version;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "MedicinePackage", propOrder = {"type", "capacity", "price"})
 public class MedicinePackage {
+    @XmlElement(name = "type", namespace = "http://www.epamcourses.by/medicins")
     private String type;
+    @XmlElement(name = "capacity", namespace = "http://www.epamcourses.by/medicins")
     private int capacity;
+    @XmlElement(name = "price", namespace = "http://www.epamcourses.by/medicins")
     private double price;
 
 
