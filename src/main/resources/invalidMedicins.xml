@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<medicins xmlns="http://www.epamcourses.by/medicins"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.epamcourses.by/medicins  medicationsSchema.xsd ">
+
+    <heart-medicine id="medicin!!!!!e290">
+        <name>bisoprolol</name>
+        <group>beta-blocant</group>
+        <analogs>
+            <analog>concor</analog>
+            <analog>bicard</analog>
+        </analogs>
+        <versions>
+            <version version-name="PILLS">
+                <certificate number="N83bs9!!!!!!0vb32" registering-organization="rapharm">
+                    <issue-date>2021-12-05</issue-date>
+                    <expiry-date>2023-12-05</expiry-date>
+                </certificate>
+                <package>
+                    <type>CARDBOARD BOX</type>
+                    <capacity>-28</capacity>
+                    <price>-16</price>
+                </package>
+                <dosage>
+                    <dose>5</dose>
+                    <medication-interval>12 HOURS</medication-interval>
+                </dosage>
+            </version>
+        </versions>
+    </heart-medicine>
+
+    <!--<uncorrect-tag/>-->
+</medicins>

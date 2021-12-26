@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<medicins xmlns="http://www.epamcourses.by/medicins"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.epamcourses.by/medicins  medicationsSchema.xsd ">
+
+    <heart-medicine id="medicine290">
+        <name>bisoprolol</name>
+        <group>beta-blocant</group>
+        <analogs>
+            <analog>concor</analog>
+            <analog>bicard</analog>
+        </analogs>
+        <versions>
+            <version version-name="PILLS">
+                <certificate number="N83bs90vb32" registering-organization="rapharm">
+                    <issue-date>2021-12-05</issue-date>
+                    <expiry-date>2023-12-05</expiry-date>
+                </certificate>
+                <package>
+                    <type>CARDBOARD BOX</type>
+                    <capacity>28</capacity>
+                    <price>16</price>
+                </package>
+                <dosage>
+                    <dose>5</dose>
+                    <medication-interval>12 HOURS</medication-interval>
+                </dosage>
+            </version>
+        </versions>
+    </heart-medicine>
+
+    <vascular-medicine id="medicine902">
+        <name>piracetam</name>
+        <group>nootropics</group>
+        <analogs>
+            <analog>lucetam</analog>
+            <analog>macsotropil</analog>
+        </analogs>
+        <versions>
+            <version version-name="CAPSULES">
+                <certificate number="bUI82kd5ti">
+                    <issue-date>2021-12-07</issue-date>
+                    <expiry-date>2023-12-07</expiry-date>
+                </certificate>
+                <package>
+                    <type>BLISTER</type>
+                    <capacity>10</capacity>
+                    <price>7</price>
+                </package>
+                <dosage>
+                    <dose>400</dose>
+                    <medication-interval>6 HOURS</medication-interval>
+                </dosage>
+            </version>
+            <version version-name="SOLUTION">
+                <certificate number="T9nkjSn93">
+                    <issue-date>2021-11-17</issue-date>
+                    <expiry-date>2023-11-17</expiry-date>
+                </certificate>
+                <package>
+                    <type>BOTTLE</type>
+                    <capacity>120</capacity>
+                    <price>8</price>
+                </package>
+                <dosage>
+                    <dose>2333</dose>
+                    <medication-interval>6 HOURS</medication-interval>
+                </dosage>
+            </version>
+            <version version-name="PILLS">
+                <certificate number="BI1bksJHI">
+                    <issue-date>2021-10-27</issue-date>
+                    <expiry-date>2023-10-27</expiry-date>
+                </certificate>
+                <package>
+                    <type>CARDBOARD BOX</type>
+                    <capacity>10</capacity>
+                    <price>10</price>
+                </package>
+                <dosage>
+                    <dose>200</dose>
+                    <medication-interval>6 HOURS</medication-interval>
+                </dosage>
+            </version>
+        </versions>
+    </vascular-medicine>
+</medicins>
