@@ -3,6 +3,7 @@ package com.epam.xml.logic;
 import com.epam.xml.entity.*;
 import com.epam.xml.entity.version.*;
 import com.epam.xml.parser.XmlTag;
+import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -13,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class MedicineHandler extends DefaultHandler {
+    private static final Logger LOGGER = Logger.getLogger(MedicineHandler.class);
+
     private static final String HEART_MEDICINE_TAG = XmlTag.HEART_MEDICINE.getValue();
     private static final String VASCULAR_MEDICINE_TAG = XmlTag.VASCULAR_MEDICINE.getValue();
     private static final String ANALOGS_TAG = XmlTag.ANALOGS.getValue();
@@ -39,7 +42,7 @@ public class MedicineHandler extends DefaultHandler {
     }
 
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes attributes)  {
 
         if (qName.equals(HEART_MEDICINE_TAG)) {
             currentMedicine = new HeartMedicine();
@@ -132,22 +135,29 @@ public class MedicineHandler extends DefaultHandler {
     }
 
     @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {
+    public void endElement(String uri, String localName, String qName) {
 
         if (qName.equals(HEART_MEDICINE_TAG) || qName.equals(VASCULAR_MEDICINE_TAG)) {
             medicins.add(currentMedicine);
+            LOGGER.info("Medicins added to list");
         } else if (qName.equals(ANALOGS_TAG)) {
             currentMedicine.setAnalogs(currentAnalogs);
+            LOGGER.info("Medicins analogs were added");
         } else if (qName.equals(VERSIONS_TAG)) {
             currentMedicine.setVersions(currentVersions);
+            LOGGER.info("Medicins versions were added");
         } else if (qName.equals(VERSION_TAG)) {
             currentVersions.add(currentVersion);
+            LOGGER.info("Medicine version was added");
         } else if (qName.equals(CERTIFICATE_TAG)) {
             currentVersion.setCertificate(currentCertificate);
+            LOGGER.info("Certificate was added");
         } else if (qName.equals(MEDICINE_PACKAGE_TAG)) {
             currentVersion.setMedicinePackage(currentMedicinePackage);
+            LOGGER.info("Medicine package was added");
         } else if (qName.equals(DOSAGE_TAG)) {
             currentVersion.setDosage(currentDosage);
+            LOGGER.info("Dosage was added");
         }
     }
 

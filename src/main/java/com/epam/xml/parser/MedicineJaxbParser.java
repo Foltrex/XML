@@ -3,6 +3,7 @@ package com.epam.xml.parser;
 import com.epam.xml.entity.Medicine;
 import com.epam.xml.entity.Medicins;
 import com.epam.xml.exception.MedicineException;
+import org.apache.log4j.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -12,6 +13,8 @@ import java.io.FileReader;
 import java.util.List;
 
 public class MedicineJaxbParser implements MedicineParser {
+    private static final Logger LOGGER = Logger.getLogger(MedicineJaxbParser.class);
+
     @Override
     public List<Medicine> parse(String xmlPath) throws MedicineException {
         List<Medicine> medicineList;
@@ -23,6 +26,8 @@ public class MedicineJaxbParser implements MedicineParser {
             Medicins medicins = (Medicins) unmarshaller.unmarshal(reader);
 
             medicineList = medicins.getMedicins();
+            LOGGER.info("Medicins were added to medicine list");
+
         } catch (JAXBException | FileNotFoundException exception) {
             throw new MedicineException("Jaxb parsing exception: ", exception);
         }

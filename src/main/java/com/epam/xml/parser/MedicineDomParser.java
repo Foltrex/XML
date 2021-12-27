@@ -3,6 +3,7 @@ package com.epam.xml.parser;
 import com.epam.xml.entity.*;
 import com.epam.xml.entity.version.*;
 import com.epam.xml.exception.MedicineException;
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -21,9 +22,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class MedicineDomParser implements MedicineParser{
+public class MedicineDomParser implements MedicineParser {
+    private static final Logger LOGGER = Logger.getLogger(MedicineDomParser.class);
+
     @Override
     public List<Medicine> parse(String xmlPath) throws MedicineException {
+        LOGGER.debug("Xml path: " + xmlPath);
+
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         List<Medicine> medicins = new ArrayList<>();
 
@@ -33,7 +38,11 @@ public class MedicineDomParser implements MedicineParser{
             Element root = document.getDocumentElement();
 
             createSpecifiedTypeOfMedicins(medicins, root, XmlTag.HEART_MEDICINE);
+            LOGGER.info("Heart medicins were added to medicins");
+
             createSpecifiedTypeOfMedicins(medicins, root, XmlTag.VASCULAR_MEDICINE);
+            LOGGER.info("Vascular medicins were added to medicins");
+
         } catch (IOException | SAXException | ParserConfigurationException exception) {
             throw new MedicineException("Dom parser exception: ", exception);
         }
@@ -64,6 +73,7 @@ public class MedicineDomParser implements MedicineParser{
         }
 
         parseMedicineFields(medicineElement, medicine);
+        LOGGER.info("Medicine fields were initialized");
 
         return medicine;
     }
