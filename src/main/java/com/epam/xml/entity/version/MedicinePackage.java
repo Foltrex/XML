@@ -10,21 +10,35 @@ import java.util.Objects;
 @XmlType(name = "MedicinePackage", propOrder = {"type", "capacity", "price"})
 public class MedicinePackage {
     @XmlElement(name = "type", namespace = "http://www.epamcourses.by/medicins")
-    private String type;
+    private PackageType packageType;
     @XmlElement(name = "capacity", namespace = "http://www.epamcourses.by/medicins")
     private int capacity;
     @XmlElement(name = "price", namespace = "http://www.epamcourses.by/medicins")
     private double price;
 
+    public MedicinePackage() {
+    }
 
-    public MedicinePackage(String type, int capacity, double price) {
-        this.type = type;
+    public MedicinePackage(PackageType packageType, int capacity, double price) {
+        this.packageType = packageType;
         this.capacity = capacity;
         this.price = price;
     }
 
-    public String getType() {
-        return type;
+    public void setType(PackageType packageType) {
+        this.packageType = packageType;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public PackageType getPackageType() {
+        return packageType;
     }
 
     public int getCapacity() {
@@ -47,18 +61,18 @@ public class MedicinePackage {
         MedicinePackage that = (MedicinePackage) o;
         return capacity == that.getCapacity()
                 && Double.compare(that.getPrice(), price) == 0
-                && Objects.equals(type, that.getType());
+                && Objects.equals(packageType, that.getPackageType());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, capacity, price);
+        return Objects.hash(packageType, capacity, price);
     }
 
     @Override
     public String toString() {
         return "MedicinePackage{" +
-                "type='" + type + '\'' +
+                "packageType='" + packageType + '\'' +
                 ", capacity=" + capacity +
                 ", price=" + price +
                 '}';

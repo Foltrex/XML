@@ -14,6 +14,9 @@ public class Dosage {
     @XmlElement(name = "medication-interval", namespace = "http://www.epamcourses.by/medicins")
     private int medicationInterval;
 
+    public Dosage() {
+    }
+
     /**
      * @param dose amount of medication taken in milligrams
      * @param medicationInterval time between appointments in hours
@@ -22,6 +25,15 @@ public class Dosage {
         this.dose = dose;
         this.medicationInterval = medicationInterval;
     }
+
+    public void setDose(int dose) {
+        this.dose = dose;
+    }
+
+    public void setMedicationInterval(int medicationInterval) {
+        this.medicationInterval = medicationInterval;
+    }
+
 
     public double getDose() {
         return dose;

@@ -59,12 +59,12 @@
 
     <complexType name="version">
         <sequence>
+            <element name="version-name" type="tns:version-name"/>
+            <element name="pharm" type="string"/>
             <element name="certificate" type="tns:certificate"/>
             <element name="package" type="tns:package"/>
             <element name="dosage" type="tns:dosage"/>
         </sequence>
-
-        <attribute name="version-name" type="tns:version-name" use="required"/>
     </complexType>
 
     <simpleType name="version-name">
@@ -79,12 +79,10 @@
 
     <complexType name="certificate">
         <sequence>
+            <element name="number" type="tns:medicine-id"/>
             <element name="issue-date" type="date"/>
             <element name="expiry-date" type="date"/>
         </sequence>
-
-        <attribute name="number" type="tns:medicine-id" use="required"/>
-        <attribute name="registering-organization" type="string" use="optional" default="lekpharm"/>
     </complexType>
 
     <complexType name="dosage">

@@ -4,9 +4,9 @@ import javax.xml.bind.annotation.*;
 import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Version", propOrder = {"pharm", "certificate","medicinePackage", "dosage"})
+@XmlType(name = "Version", propOrder = {"versionName", "pharm", "certificate","medicinePackage", "dosage"})
 public class Version {
-    @XmlAttribute(name = "version-name")
+    @XmlElement(name = "version-name", namespace = "http://www.epamcourses.by/medicins")
     private VersionName versionName;
     @XmlElement(name = "pharm", namespace = "http://www.epamcourses.by/medicins")
     private String pharm;
@@ -17,12 +17,39 @@ public class Version {
     @XmlElement(name = "dosage", namespace = "http://www.epamcourses.by/medicins")
     private Dosage dosage;
 
+    public Version() {
+    }
+
     public Version(VersionName versionName, String pharm, Certificate certificate, MedicinePackage medicinePackage, Dosage dosage) {
         this.versionName = versionName;
         this.pharm = pharm;
         this.certificate = certificate;
         this.medicinePackage = medicinePackage;
         this.dosage = dosage;
+    }
+
+    public void setVersionName(VersionName versionName) {
+        this.versionName = versionName;
+    }
+
+    public void setPharm(String pharm) {
+        this.pharm = pharm;
+    }
+
+    public void setCertificate(Certificate certificate) {
+        this.certificate = certificate;
+    }
+
+    public void setMedicinePackage(MedicinePackage medicinePackage) {
+        this.medicinePackage = medicinePackage;
+    }
+
+    public void setDosage(Dosage dosage) {
+        this.dosage = dosage;
+    }
+
+    public VersionName getVersionName() {
+        return versionName;
     }
 
     public String getPharm() {
@@ -50,21 +77,23 @@ public class Version {
             return false;
         }
         Version version = (Version) o;
-        return pharm.equals(version.getPharm())
-                && certificate.equals(version.getCertificate())
-                && medicinePackage.equals(version.getMedicinePackage())
-                && dosage.equals(version.getDosage());
+        return versionName == version.getVersionName()
+                && Objects.equals(pharm, version.getPharm())
+                && Objects.equals(certificate, version.getCertificate())
+                && Objects.equals(medicinePackage, version.getMedicinePackage())
+                && Objects.equals(dosage, version.getDosage());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pharm, certificate, medicinePackage, dosage);
+        return Objects.hash(versionName, pharm, certificate, medicinePackage, dosage);
     }
 
     @Override
     public String toString() {
         return "Version{" +
-                "pharm='" + pharm + '\'' +
+                "versionName=" + versionName +
+                ", pharm='" + pharm + '\'' +
                 ", certificate=" + certificate +
                 ", medicinePackage=" + medicinePackage +
                 ", dosage=" + dosage +

@@ -12,6 +12,10 @@ import java.util.ArrayList;
 @XmlType(name = "HeartMedicine")
 public class HeartMedicine extends Medicine {
 
+    public HeartMedicine() {
+        super();
+    }
+
     public HeartMedicine(String id, String name, String group, Analogs analogs, Versions versions) {
         super(id, name, group, analogs, versions);
     }

@@ -11,8 +11,11 @@
             <analog>bicard</analog>
         </analogs>
         <versions>
-            <version version-name="PILLS">
-                <certificate number="N83bs90vb32" registering-organization="rapharm">
+            <version>
+                <version-name>PILLS</version-name>
+                <pharm>Lekpharm</pharm>
+                <certificate>
+                    <number>N83bs90vb32</number>
                     <issue-date>2021-12-05</issue-date>
                     <expiry-date>2023-12-05</expiry-date>
                 </certificate>
@@ -37,8 +40,11 @@
             <analog>macsotropil</analog>
         </analogs>
         <versions>
-            <version version-name="CAPSULES">
-                <certificate number="bUI82kd5ti">
+            <version>
+                <version-name>CAPSULES</version-name>
+                <pharm>Egis Pharmaceutical</pharm>
+                <certificate>
+                    <number>bUI82kd5ti</number>
                     <issue-date>2021-12-07</issue-date>
                     <expiry-date>2023-12-07</expiry-date>
                 </certificate>
@@ -52,8 +58,11 @@
                     <medication-interval>6 HOURS</medication-interval>
                 </dosage>
             </version>
-            <version version-name="SOLUTION">
-                <certificate number="T9nkjSn93">
+            <version>
+                <version-name>SOLUTION</version-name>
+                <pharm>Meness</pharm>
+                <certificate>
+                    <number>T9nkjSn93</number>
                     <issue-date>2021-11-17</issue-date>
                     <expiry-date>2023-11-17</expiry-date>
                 </certificate>
@@ -67,8 +76,11 @@
                     <medication-interval>6 HOURS</medication-interval>
                 </dosage>
             </version>
-            <version version-name="PILLS">
-                <certificate number="BI1bksJHI">
+            <version>
+                <version-name>PILLS</version-name>
+                <pharm>TOGOS</pharm>
+                <certificate>
+                    <number>BI1bksJHI</number>
                     <issue-date>2021-10-27</issue-date>
                     <expiry-date>2023-10-27</expiry-date>
                 </certificate>

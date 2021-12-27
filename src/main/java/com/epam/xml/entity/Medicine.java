@@ -26,6 +26,9 @@ public abstract class Medicine {
     @XmlElement(namespace = "http://www.epamcourses.by/medicins")
     private Versions versions;
 
+    public Medicine() {
+    }
+
     public Medicine(String id, String name, String group,
                     Analogs analogs, Versions versions) {
         this.id = id;
@@ -33,6 +36,46 @@ public abstract class Medicine {
         this.group = group;
         this.analogs = analogs;
         this.versions = versions;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public void setAnalogs(Analogs analogs) {
+        this.analogs = analogs;
+    }
+
+    public void setVersions(Versions versions) {
+        this.versions = versions;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public Analogs getAnalogs() {
+        return analogs;
+    }
+
+    public Versions getVersions() {
+        return versions;
     }
 
     @Override
@@ -63,7 +106,6 @@ public abstract class Medicine {
                 ", name='" + name + '\'' +
                 ", group='" + group + '\'' +
                 ", analogs=" + analogs +
-                ", version=" + versions +
                 ", versions=" + versions +
                 '}';
     }
