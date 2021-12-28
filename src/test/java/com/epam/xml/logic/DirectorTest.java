@@ -33,10 +33,10 @@ public class DirectorTest {
         Mockito.when(medicineXmlValidator.isValid(XML_PATH, XSD_PATH)).thenReturn(true);
         Director director = new Director(medicineXmlValidator);
 
-		// when
+        // when
         List<Medicine> medicins = director.parse(XML_PATH, XSD_PATH, PARSER_TYPE);
 
-		// then
+        // then
         Assert.assertEquals(2, medicins.size());
         Mockito.verify(medicineXmlValidator, Mockito.times(1)).isValid(XML_PATH, XSD_PATH);
         Mockito.verifyNoMoreInteractions(medicineXmlValidator);

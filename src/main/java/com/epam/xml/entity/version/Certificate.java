@@ -78,7 +78,6 @@ public class Certificate {
         int year = Integer.parseInt(words[0]);
         int month = Integer.parseInt(words[1]);
         int day = Integer.parseInt(words[2]);
-        Date date = new Date(year, month, day);
-        return date;
+        return new Date(year, month, day);
     }
 }
