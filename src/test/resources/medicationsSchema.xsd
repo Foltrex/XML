@@ -94,9 +94,9 @@
     
     <simpleType name="medication-interval">
         <restriction base="string">
-            <enumeration value="6 HOURS"/>
-            <enumeration value="12 HOURS"/>
-            <enumeration value="24 HOURS"/>
+            <enumeration value="6"/>
+            <enumeration value="12"/>
+            <enumeration value="24"/>
         </restriction>
     </simpleType>
     

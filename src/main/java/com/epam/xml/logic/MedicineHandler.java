@@ -93,18 +93,16 @@ public class MedicineHandler extends DefaultHandler {
                 case PHARM:
                     currentVersion.setPharm(info);
                     break;
-                case CERTIFICATE_NUMBER:
+                case NUMBER:
                     currentCertificate.setNumber(info);
                     break;
                 case ISSUE_DATE:
-                    Calendar issueDate = parseCalendar(info);
-                    currentCertificate.setIssueDate(issueDate);
+                    currentCertificate.setIssueDate(info);
                     break;
                 case EXPIRY_DATE:
-                    Calendar expiryDate = parseCalendar(info);
-                    currentCertificate.setExpiryDate(expiryDate);
+                    currentCertificate.setExpiryDate(info);
                     break;
-                case PACKAGE_TYPE:
+                case TYPE:
                     info = info.replace(' ', '_');
                     PackageType packageType = PackageType.valueOf(info);
                     currentMedicinePackage.setType(packageType);
@@ -122,8 +120,7 @@ public class MedicineHandler extends DefaultHandler {
                     currentDosage.setDose(dose);
                     break;
                 case MEDICATION_INTERVAL:
-                    String[] words = info.split(" ");
-                    int medicationInterval = Integer.parseInt(words[0]);
+                    int medicationInterval = Integer.parseInt(info);
                     currentDosage.setMedicationInterval(medicationInterval);
                     break;
                 default:
@@ -164,18 +161,5 @@ public class MedicineHandler extends DefaultHandler {
     private void setAttributes(Attributes attributes) {
         String medicineId = attributes.getValue(XmlTag.ID.getValue());
         currentMedicine.setId(medicineId);
-    }
-    
-    private Calendar parseCalendar(String info) {
-        Calendar calendar = null;
-        try {
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = format.parse(info);
-            calendar = Calendar.getInstance();
-            calendar.setTime(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return calendar;
     }
 }

@@ -14,7 +14,11 @@ import java.util.List;
 public class Director {
     private static final Logger LOGGER = Logger.getLogger(Director.class);
 
-    private static final MedicineXmlValidator xmlValidator = new MedicineXmlValidator();
+    private MedicineXmlValidator xmlValidator;
+
+    public Director(MedicineXmlValidator xmlValidator) {
+        this.xmlValidator = xmlValidator;
+    }
 
     public List<Medicine> parse(String xmlPath, String xsdPath, ParserType parserType) {
         List<Medicine> medicins = new ArrayList<>();

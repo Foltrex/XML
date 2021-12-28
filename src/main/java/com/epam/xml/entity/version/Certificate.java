@@ -1,7 +1,11 @@
 package com.epam.xml.entity.version;
 
+import com.epam.xml.logic.DateAdapter;
+
 import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -10,29 +14,22 @@ public class Certificate {
     @XmlElement(name = "number", namespace = "http://www.epamcourses.by/medicins")
     private String number;
     @XmlElement(name = "issue-date", namespace = "http://www.epamcourses.by/medicins")
-    private Calendar issueDate;
+    @XmlJavaTypeAdapter(DateAdapter.class)
+    private Date issueDate;
     @XmlElement(name = "expiry-date", namespace = "http://www.epamcourses.by/medicins")
-    private Calendar expiryDate;
-
-    public Certificate() {
-    }
-
-    public Certificate(String number, Calendar issueDate, Calendar expiryDate) {
-        this.number = number;
-        this.issueDate = issueDate;
-        this.expiryDate = expiryDate;
-    }
+    @XmlJavaTypeAdapter(DateAdapter.class)
+    private Date expiryDate;
 
     public void setNumber(String number) {
         this.number = number;
     }
 
-    public void setIssueDate(Calendar issueDate) {
-        this.issueDate = issueDate;
+    public void setIssueDate(String issueDate) {
+        this.issueDate = parseDate(issueDate);
     }
 
-    public void setExpiryDate(Calendar expiryDate) {
-        this.expiryDate = expiryDate;
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = parseDate(expiryDate);
     }
 
 
@@ -40,11 +37,11 @@ public class Certificate {
         return number;
     }
 
-    public Calendar getIssueDate() {
+    public Date getIssueDate() {
         return issueDate;
     }
 
-    public Calendar getExpiryDate() {
+    public Date getExpiryDate() {
         return expiryDate;
     }
 
@@ -57,7 +54,7 @@ public class Certificate {
             return false;
         }
         Certificate that = (Certificate) o;
-        return getNumber() == that.getNumber()
+        return Objects.equals(number, that.getNumber())
                 && Objects.equals(issueDate, that.getIssueDate())
                 && Objects.equals(expiryDate, that.getExpiryDate());
     }
@@ -74,5 +71,14 @@ public class Certificate {
                 ", issueDate=" + issueDate +
                 ", expiryDate=" + expiryDate + '\'' +
                 '}';
+    }
+
+    private Date parseDate(String info) {
+        String[] words = info.split("[-/]");
+        int year = Integer.parseInt(words[0]);
+        int month = Integer.parseInt(words[1]);
+        int day = Integer.parseInt(words[2]);
+        Date date = new Date(year, month, day);
+        return date;
     }
 }

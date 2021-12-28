@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlType;
 import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "MedicinePackage", propOrder = {"type", "capacity", "price"})
+@XmlType(name = "MedicinePackage", propOrder = {"packageType", "capacity", "price"})
 public class MedicinePackage {
     @XmlElement(name = "type", namespace = "http://www.epamcourses.by/medicins")
     private PackageType packageType;

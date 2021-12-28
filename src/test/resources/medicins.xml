@@ -26,7 +26,7 @@
                 </package>
                 <dosage>
                     <dose>5</dose>
-                    <medication-interval>12 HOURS</medication-interval>
+                    <medication-interval>12</medication-interval>
                 </dosage>
             </version>
         </versions>
@@ -55,7 +55,7 @@
                 </package>
                 <dosage>
                     <dose>400</dose>
-                    <medication-interval>6 HOURS</medication-interval>
+                    <medication-interval>6</medication-interval>
                 </dosage>
             </version>
             <version>
@@ -73,7 +73,7 @@
                 </package>
                 <dosage>
                     <dose>2333</dose>
-                    <medication-interval>6 HOURS</medication-interval>
+                    <medication-interval>6</medication-interval>
                 </dosage>
             </version>
             <version>
@@ -91,7 +91,7 @@
                 </package>
                 <dosage>
                     <dose>200</dose>
-                    <medication-interval>6 HOURS</medication-interval>
+                    <medication-interval>6</medication-interval>
                 </dosage>
             </version>
         </versions>

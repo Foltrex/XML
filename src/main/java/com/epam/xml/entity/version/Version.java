@@ -12,7 +12,7 @@ public class Version {
     private String pharm;
     @XmlElement(name = "certificate", namespace = "http://www.epamcourses.by/medicins")
     private Certificate certificate;
-    @XmlElement(name = "medicine-package", namespace = "http://www.epamcourses.by/medicins")
+    @XmlElement(name = "package", namespace = "http://www.epamcourses.by/medicins")
     private MedicinePackage medicinePackage;
     @XmlElement(name = "dosage", namespace = "http://www.epamcourses.by/medicins")
     private Dosage dosage;

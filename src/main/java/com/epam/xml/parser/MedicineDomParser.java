@@ -166,7 +166,7 @@ public class MedicineDomParser implements MedicineParser {
     }
 
 
-    private static final String NUMBER_TAG = XmlTag.CERTIFICATE_NUMBER.getValue();
+    private static final String NUMBER_TAG = XmlTag.NUMBER.getValue();
     private static final String ISSUE_DATE_TAG = XmlTag.ISSUE_DATE.getValue();
     private static final String EXPIRY_DATE_TAG = XmlTag.EXPIRY_DATE.getValue();
 
@@ -175,22 +175,20 @@ public class MedicineDomParser implements MedicineParser {
         certificate.setNumber(textContent);
 
         textContent = getElementTextContent(certificateElement, ISSUE_DATE_TAG);
-        Calendar issueDate = parseCalendar(textContent);
-        certificate.setIssueDate(issueDate);
+        certificate.setIssueDate(textContent);
 
         textContent = getElementTextContent(certificateElement, EXPIRY_DATE_TAG);
-        Calendar expiryDate = parseCalendar(textContent);
-        certificate.setExpiryDate(expiryDate);
+        certificate.setExpiryDate(textContent);
     }
 
 
-    private static final String PACKAGE_TYPE_TAG = XmlTag.PACKAGE_TYPE.getValue();
+    private static final String PACKAGE_TYPE_TAG = XmlTag.TYPE.getValue();
     private static final String CAPACITY_TAG = XmlTag.CAPACITY.getValue();
     private static final String PRICE_TAG = XmlTag.PRICE.getValue();
 
     private void parseMedicinePackageFields(Element medicinePackageElement, MedicinePackage medicinePackage) {
         String textContent = getElementTextContent(medicinePackageElement, PACKAGE_TYPE_TAG);
-        textContent.replace(' ', '_');
+        textContent = textContent.replace(' ', '_');
         PackageType packageType = PackageType.valueOf(textContent);
         medicinePackage.setType(packageType);
 
@@ -213,8 +211,7 @@ public class MedicineDomParser implements MedicineParser {
         dosage.setDose(dose);
 
         textContent = getElementTextContent(dosageElement, MEDICATION_INTERVAL_TAG);
-        String[] words = textContent.split(" ");
-        int medicationInterval = Integer.parseInt(words[0]);
+        int medicationInterval = Integer.parseInt(textContent);
         dosage.setMedicationInterval(medicationInterval);
     }
 
@@ -228,18 +225,5 @@ public class MedicineDomParser implements MedicineParser {
         Node node = nodeList.item(0);
 
         return node.getTextContent();
-    }
-
-    private Calendar parseCalendar(String info) {
-        Calendar calendar = null;
-        try {
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = format.parse(info);
-            calendar = Calendar.getInstance();
-            calendar.setTime(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return calendar;
     }
 }
