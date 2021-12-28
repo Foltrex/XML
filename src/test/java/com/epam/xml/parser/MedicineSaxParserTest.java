@@ -39,7 +39,7 @@ public class MedicineSaxParserTest {
 
 
         Version firstVersionOfFirstMedicine = new Version(VersionName.PILLS, "Lekpharm", certificateOfFirstVersionOfFirstMedicine,
-                        medicinePackageOfFirstVersionOfFirstMedicine, dosageOfFirstVersionOfFirstMedicine);
+                medicinePackageOfFirstVersionOfFirstMedicine, dosageOfFirstVersionOfFirstMedicine);
 
         versionsOfFirstMedicine.add(firstVersionOfFirstMedicine);
 
@@ -85,9 +85,7 @@ public class MedicineSaxParserTest {
         MedicinePackage medicinePackageOfSecondVersionOfSecondMedicine = new MedicinePackage(PackageType.BOTTLE,
                 120, 8);
 
-        Dosage dosageOfSecondVersionOfSecondMedicine = new Dosage();
-        dosageOfSecondVersionOfSecondMedicine.setDose(2333);
-        dosageOfSecondVersionOfSecondMedicine.setMedicationInterval(6);
+        Dosage dosageOfSecondVersionOfSecondMedicine = new Dosage(2333, 6);
 
 
         Version secondVersionOfSecondMedicine = new Version(VersionName.SOLUTION, "Meness", certificateOfSecondVersionOfSecondMedicine,
@@ -103,18 +101,15 @@ public class MedicineSaxParserTest {
         certificateOfThirdVersionOfSecondMedicine.setIssueDate("2021-10-27");
         certificateOfThirdVersionOfSecondMedicine.setExpiryDate("2023-10-27");
 
-        MedicinePackage medicinePackageOfThirdVersionOfSecondMedicine = new MedicinePackage();
-        medicinePackageOfThirdVersionOfSecondMedicine.setType(PackageType.CARDBOARD_BOX);
-        medicinePackageOfThirdVersionOfSecondMedicine.setCapacity(10);
-        medicinePackageOfThirdVersionOfSecondMedicine.setPrice(10);
+        MedicinePackage medicinePackageOfThirdVersionOfSecondMedicine = new MedicinePackage(PackageType.CARDBOARD_BOX,
+                10, 10);
 
-        Dosage dosageOfThirdVersionOfSecondMedicine = new Dosage();
-        dosageOfThirdVersionOfSecondMedicine.setDose(200);
-        dosageOfThirdVersionOfSecondMedicine.setMedicationInterval(6);
+        Dosage dosageOfThirdVersionOfSecondMedicine = new Dosage(200, 6);
 
 
         Version thirdVersionOfSecondMedicine = new Version(VersionName.PILLS, "TOGOS", certificateOfThirdVersionOfSecondMedicine,
                 medicinePackageOfThirdVersionOfSecondMedicine, dosageOfThirdVersionOfSecondMedicine);
+
         versionsOfSecondMedicine.add(thirdVersionOfSecondMedicine);
 
         Medicine medicineSecond = new VascularMedicine("medicine902", "piracetam", "nootropics",
@@ -122,11 +117,11 @@ public class MedicineSaxParserTest {
 
         // --------------------------------------
 
-        MedicineParser medicineDomParser = new MedicineSaxParser();
+        MedicineParser medicineParser = new MedicineSaxParser();
         List<Medicine> expected = Arrays.asList(medicineFirst, medicineSecond);
 
         //when
-        List<Medicine> actual = medicineDomParser.parse(VALID_XML);
+        List<Medicine> actual = medicineParser.parse(VALID_XML);
 
         //then
         Assert.assertEquals(expected, actual);
