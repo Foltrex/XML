@@ -20,6 +20,7 @@ public class VascularMedicine extends Medicine {
         super(id, name, group, analogs, versions);
     }
 
+    // equals and hashCode were predefined for clarity (these methods are already defined in the base class)
     @Override
     public boolean equals(Object o) {
         return super.equals(o);
