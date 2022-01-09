@@ -25,6 +25,29 @@ import java.util.List;
 public class MedicineDomParser implements MedicineParser {
     private static final Logger LOGGER = Logger.getLogger(MedicineDomParser.class);
 
+    private static final String HEART_MEDICINE_TAG = XmlTag.HEART_MEDICINE.getValue();
+    private static final String MEDICINE_ID_TAG = XmlTag.ID.getValue();
+    private static final String NAME_TAG = XmlTag.NAME.getValue();
+    private static final String GROUP_TAG = XmlTag.GROUP.getValue();
+    private static final String ANALOGS_TAG = XmlTag.ANALOGS.getValue();
+    private static final String VERSIONS_TAG = XmlTag.VERSIONS.getValue();
+    private static final String ANALOG_TAG = XmlTag.ANALOG.getValue();
+    private static final String VERSION_TAG = XmlTag.VERSION.getValue();
+    private static final String VERSION_NAME_TAG = XmlTag.VERSION_NAME.getValue();
+    private static final String PHARM_TAG = XmlTag.PHARM.getValue();
+    private static final String CERTIFICATE_TAG = XmlTag.CERTIFICATE.getValue();
+    private static final String MEDICINE_PACKAGE_TAG = XmlTag.MEDICINE_PACKAGE.getValue();
+    private static final String DOSAGE_TAG = XmlTag.DOSAGE.getValue();
+    private static final String NUMBER_TAG = XmlTag.NUMBER.getValue();
+    private static final String ISSUE_DATE_TAG = XmlTag.ISSUE_DATE.getValue();
+    private static final String EXPIRY_DATE_TAG = XmlTag.EXPIRY_DATE.getValue();
+    private static final String PACKAGE_TYPE_TAG = XmlTag.TYPE.getValue();
+    private static final String CAPACITY_TAG = XmlTag.CAPACITY.getValue();
+    private static final String PRICE_TAG = XmlTag.PRICE.getValue();
+    private static final String DOSE_TAG = XmlTag.DOSE.getValue();
+    private static final String MEDICATION_INTERVAL_TAG = XmlTag.MEDICATION_INTERVAL.getValue();
+
+    
     @Override
     public List<Medicine> parse(String xmlPath) throws MedicineException {
         LOGGER.debug("Xml path: " + xmlPath);
@@ -61,8 +84,6 @@ public class MedicineDomParser implements MedicineParser {
     }
 
 
-    private static final String HEART_MEDICINE_TAG = XmlTag.HEART_MEDICINE.getValue();
-
     private Medicine parseElement(Element medicineElement) {
         String medicineClass = medicineElement.getTagName();
         Medicine medicine;
@@ -78,12 +99,6 @@ public class MedicineDomParser implements MedicineParser {
         return medicine;
     }
 
-
-    private static final String MEDICINE_ID_TAG = XmlTag.ID.getValue();
-    private static final String NAME_TAG = XmlTag.NAME.getValue();
-    private static final String GROUP_TAG = XmlTag.GROUP.getValue();
-    private static final String ANALOGS_TAG = XmlTag.ANALOGS.getValue();
-    private static final String VERSIONS_TAG = XmlTag.VERSIONS.getValue();
 
     private void parseMedicineFields(Element medicineElement, Medicine medicine) {
         medicine.setId(medicineElement.getAttribute(MEDICINE_ID_TAG));
@@ -108,8 +123,6 @@ public class MedicineDomParser implements MedicineParser {
     }
 
 
-    private static final String ANALOG_TAG = XmlTag.ANALOG.getValue();
-
     private void parseAnalogs(Element analogsElement, Analogs analogs) {
         NodeList analogList = analogsElement.getElementsByTagName(ANALOG_TAG);
 
@@ -120,8 +133,6 @@ public class MedicineDomParser implements MedicineParser {
         }
     }
 
-
-    private static final String VERSION_TAG = XmlTag.VERSION.getValue();
 
     private void parseVersions(Element versionsElement, Versions versions) {
         NodeList versionList = versionsElement.getElementsByTagName(VERSION_TAG);
@@ -134,12 +145,6 @@ public class MedicineDomParser implements MedicineParser {
         }
     }
 
-
-    private static final String VERSION_NAME_TAG = XmlTag.VERSION_NAME.getValue();
-    private static final String PHARM_TAG = XmlTag.PHARM.getValue();
-    private static final String CERTIFICATE_TAG = XmlTag.CERTIFICATE.getValue();
-    private static final String MEDICINE_PACKAGE_TAG = XmlTag.MEDICINE_PACKAGE.getValue();
-    private static final String DOSAGE_TAG = XmlTag.DOSAGE.getValue();
 
     private void parseVersionFields(Element versionElement, Version version) {
         String textContent = getElementTextContent(versionElement, VERSION_NAME_TAG);
@@ -166,10 +171,6 @@ public class MedicineDomParser implements MedicineParser {
     }
 
 
-    private static final String NUMBER_TAG = XmlTag.NUMBER.getValue();
-    private static final String ISSUE_DATE_TAG = XmlTag.ISSUE_DATE.getValue();
-    private static final String EXPIRY_DATE_TAG = XmlTag.EXPIRY_DATE.getValue();
-
     private void parseCertificateFields(Element certificateElement, Certificate certificate) {
         String textContent = getElementTextContent(certificateElement, NUMBER_TAG);
         certificate.setNumber(textContent);
@@ -181,10 +182,6 @@ public class MedicineDomParser implements MedicineParser {
         certificate.setExpiryDate(textContent);
     }
 
-
-    private static final String PACKAGE_TYPE_TAG = XmlTag.TYPE.getValue();
-    private static final String CAPACITY_TAG = XmlTag.CAPACITY.getValue();
-    private static final String PRICE_TAG = XmlTag.PRICE.getValue();
 
     private void parseMedicinePackageFields(Element medicinePackageElement, MedicinePackage medicinePackage) {
         String textContent = getElementTextContent(medicinePackageElement, PACKAGE_TYPE_TAG);
@@ -201,9 +198,6 @@ public class MedicineDomParser implements MedicineParser {
         medicinePackage.setPrice(price);
     }
 
-
-    private static final String DOSE_TAG = XmlTag.DOSE.getValue();
-    private static final String MEDICATION_INTERVAL_TAG = XmlTag.MEDICATION_INTERVAL.getValue();
 
     private void parseDosageFields(Element dosageElement, Dosage dosage) {
         String textContent = getElementTextContent(dosageElement, DOSE_TAG);
