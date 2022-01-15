@@ -30,6 +30,9 @@ public enum XmlTag {
     MEDICATION_INTERVAL("medication-interval");
 
     private final String value;
+    
+    private static final char UNDERSCORE = '_';
+    private static final char HYPHEN = '-';
 
     XmlTag(String value) {
         this.value = value;
@@ -39,10 +42,8 @@ public enum XmlTag {
         return value;
     }
 
-    private static final char UNDERSCORE = '_';
-    private static final char HYPEN = '-';
     public static XmlTag valueOfTag(String tag) {
-        tag = tag.toUpperCase().replace(HYPEN, UNDERSCORE);
+        tag = tag.toUpperCase().replace(HYPHEN, UNDERSCORE);
         return XmlTag.valueOf(tag);
     }
 }
