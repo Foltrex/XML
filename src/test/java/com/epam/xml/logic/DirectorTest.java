@@ -19,12 +19,6 @@ public class DirectorTest {
     private static final String XML_PATH = "src/test/resources/medicins.xml";
     private static final String XSD_PATH = "src/test/resources/medicationsSchema.xsd";
     private static final ParserType PARSER_TYPE = ParserType.DOM;
-    private static List<Medicine> EXPECTED_MEDICINS;
-
-    @Before
-    public void initializeMedicins() {
-        EXPECTED_MEDICINS = Arrays.asList(Mockito.mock(HeartMedicine.class), Mockito.mock(VascularMedicine.class));
-    }
 
     @Test
     public void testParseShouldCreateWhenIsValid() throws MedicineException {
