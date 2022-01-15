@@ -20,16 +20,6 @@ public class HeartMedicine extends Medicine {
         super(id, name, group, analogs, versions);
     }
 
-    // equals and hashCode were predefined for clarity (these methods are already defined in the base class)
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 
     @Override
     public String toString() {

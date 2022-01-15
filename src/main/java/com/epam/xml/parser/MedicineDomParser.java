@@ -47,7 +47,7 @@ public class MedicineDomParser implements MedicineParser {
     private static final String DOSE_TAG = XmlTag.DOSE.getValue();
     private static final String MEDICATION_INTERVAL_TAG = XmlTag.MEDICATION_INTERVAL.getValue();
 
-    
+
     @Override
     public List<Medicine> parse(String xmlPath) throws MedicineException {
         LOGGER.debug("Xml path: " + xmlPath);
