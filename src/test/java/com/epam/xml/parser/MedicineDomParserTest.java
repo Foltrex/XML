@@ -16,15 +16,54 @@ public class MedicineDomParserTest {
     @Test
     public void testParseShouldParseWhenXmlIsValid() throws MedicineException {
         // given
+        Medicine heartMedicine = createHeartMedicine();
+        Medicine vascularMedicine = createVascularMedicine();
 
-        // First Medicine
-        // --------------------------------------
-        Versions versionsOfFirstMedicine = new Versions();
+        MedicineParser medicineParser = new MedicineDomParser();
+        List<Medicine> expected = Arrays.asList(heartMedicine, vascularMedicine);
 
-        Analogs analogsOfFirstMedicine = new Analogs();
-        analogsOfFirstMedicine.add("concor");
-        analogsOfFirstMedicine.add("bicard");
+        //when
+        List<Medicine> actual = medicineParser.parse(VALID_XML);
 
+        //then
+        Assert.assertEquals(expected, actual);
+
+    }
+
+
+
+    private HeartMedicine createHeartMedicine() {
+        Versions versionsOfFirstMedicine = createVersionsOfHeartMedicine();
+        Analogs analogsOfFirstMedicine = createAnalogsOfHeartMedicine();
+
+        return new HeartMedicine("medicine290", "bisoprolol", "beta-blocant", analogsOfFirstMedicine, versionsOfFirstMedicine);
+    }
+
+    private VascularMedicine createVascularMedicine() {
+
+        Versions versionsOfSecondMedicine = createVersionsOfVascularMedicine();
+        Analogs analogsOfSecondMedicine = createAnalogsOfVascularMedicine();
+
+        return new VascularMedicine("medicine902", "piracetam", "nootropics", analogsOfSecondMedicine, versionsOfSecondMedicine);
+    }
+
+
+
+    private Analogs createAnalogsOfHeartMedicine() {
+        Analogs analogsOfHeartMedicine = new Analogs();
+        analogsOfHeartMedicine.add("concor");
+        analogsOfHeartMedicine.add("bicard");
+        return analogsOfHeartMedicine;
+    }
+
+    private Versions createVersionsOfHeartMedicine() {
+        Versions versionsOfHeartMedicine = new Versions();
+        Version firstVersionOfHeartMedicine = createFirstVersionOfHeartMedicine();
+        versionsOfHeartMedicine.add(firstVersionOfHeartMedicine);
+        return versionsOfHeartMedicine;
+    }
+
+    private Version createFirstVersionOfHeartMedicine() {
         Certificate certificateOfFirstVersionOfFirstMedicine = new Certificate();
         certificateOfFirstVersionOfFirstMedicine.setNumber("N83bs90vb32");
         certificateOfFirstVersionOfFirstMedicine.setIssueDate("2021-12-05");
@@ -35,27 +74,26 @@ public class MedicineDomParserTest {
 
         Dosage dosageOfFirstVersionOfFirstMedicine = new Dosage(5, 12);
 
-
-        Version firstVersionOfFirstMedicine = new Version(VersionName.PILLS, "Lekpharm", certificateOfFirstVersionOfFirstMedicine,
+        return new Version(VersionName.PILLS, "Lekpharm", certificateOfFirstVersionOfFirstMedicine,
                 medicinePackageOfFirstVersionOfFirstMedicine, dosageOfFirstVersionOfFirstMedicine);
-
-        versionsOfFirstMedicine.add(firstVersionOfFirstMedicine);
-
-        Medicine medicineFirst = new HeartMedicine("medicine290", "bisoprolol",
-                "beta-blocant", analogsOfFirstMedicine, versionsOfFirstMedicine);
+    }
 
 
-        // Second Medicine
-        // --------------------------------------
 
-        Versions versionsOfSecondMedicine = new Versions();
+    private Versions createVersionsOfVascularMedicine() {
+        Versions versionsOfVascularMedicine = new Versions();
+        Version firstVersionOfVascularMedicine = createFirstVersionOfVascularMedicine();
+        Version secondVersionOfVascularMedicine = createSecondVersionOfVascularMedicine();
+        Version thirdVersionOfVascularMedicine = createThirdVersionOfVascularMedicine();
 
-        Analogs analogsOfSecondMedicine = new Analogs();
-        analogsOfSecondMedicine.add("lucetam");
-        analogsOfSecondMedicine.add("macsotropil");
+        versionsOfVascularMedicine.add(firstVersionOfVascularMedicine);
+        versionsOfVascularMedicine.add(secondVersionOfVascularMedicine);
+        versionsOfVascularMedicine.add(thirdVersionOfVascularMedicine);
 
-        // First version of second medicine
-        // -------------------------
+        return versionsOfVascularMedicine;
+    }
+
+    private Version createFirstVersionOfVascularMedicine() {
         Certificate certificateOfFirstVersionOfSecondMedicine = new Certificate();
         certificateOfFirstVersionOfSecondMedicine.setNumber("bUI82kd5ti");
         certificateOfFirstVersionOfSecondMedicine.setIssueDate("2021-12-07");
@@ -66,15 +104,11 @@ public class MedicineDomParserTest {
 
         Dosage dosageOfFirstVersionOfSecondMedicine = new Dosage(400, 6);
 
-        Version firstVersionOfSecondMedicine = new Version(VersionName.CAPSULES, "Egis Pharmaceutical", certificateOfFirstVersionOfSecondMedicine,
+        return new Version(VersionName.CAPSULES, "Egis Pharmaceutical", certificateOfFirstVersionOfSecondMedicine,
                 medicinePackageOfFirstVersionOfSecondMedicine, dosageOfFirstVersionOfSecondMedicine);
+    }
 
-
-        versionsOfSecondMedicine.add(firstVersionOfSecondMedicine);
-
-
-        // Second version of second medicine
-        // -------------------------
+    private Version createSecondVersionOfVascularMedicine() {
         Certificate certificateOfSecondVersionOfSecondMedicine = new Certificate();
         certificateOfSecondVersionOfSecondMedicine.setNumber("T9nkjSn93");
         certificateOfSecondVersionOfSecondMedicine.setIssueDate("2021-11-17");
@@ -86,14 +120,11 @@ public class MedicineDomParserTest {
         Dosage dosageOfSecondVersionOfSecondMedicine = new Dosage(2333, 6);
 
 
-        Version secondVersionOfSecondMedicine = new Version(VersionName.SOLUTION, "Meness", certificateOfSecondVersionOfSecondMedicine,
+        return new Version(VersionName.SOLUTION, "Meness", certificateOfSecondVersionOfSecondMedicine,
                 medicinePackageOfSecondVersionOfSecondMedicine, dosageOfSecondVersionOfSecondMedicine);
+    }
 
-        versionsOfSecondMedicine.add(secondVersionOfSecondMedicine);
-
-
-        // Third version of second medicine
-        // -------------------------
+    private Version createThirdVersionOfVascularMedicine() {
         Certificate certificateOfThirdVersionOfSecondMedicine = new Certificate();
         certificateOfThirdVersionOfSecondMedicine.setNumber("BI1bksJHI");
         certificateOfThirdVersionOfSecondMedicine.setIssueDate("2021-10-27");
@@ -105,25 +136,14 @@ public class MedicineDomParserTest {
         Dosage dosageOfThirdVersionOfSecondMedicine = new Dosage(200, 6);
 
 
-        Version thirdVersionOfSecondMedicine = new Version(VersionName.PILLS, "TOGOS", certificateOfThirdVersionOfSecondMedicine,
+        return new Version(VersionName.PILLS, "TOGOS", certificateOfThirdVersionOfSecondMedicine,
                 medicinePackageOfThirdVersionOfSecondMedicine, dosageOfThirdVersionOfSecondMedicine);
-
-        versionsOfSecondMedicine.add(thirdVersionOfSecondMedicine);
-
-        Medicine medicineSecond = new VascularMedicine("medicine902", "piracetam", "nootropics",
-                analogsOfSecondMedicine, versionsOfSecondMedicine);
-
-        // --------------------------------------
-
-        MedicineParser medicineParser = new MedicineDomParser();
-        List<Medicine> expected = Arrays.asList(medicineFirst, medicineSecond);
-
-        //when
-        List<Medicine> actual = medicineParser.parse(VALID_XML);
-
-        //then
-        Assert.assertEquals(expected, actual);
-
     }
 
+    private Analogs createAnalogsOfVascularMedicine() {
+        Analogs analogsOfVascularMedicine = new Analogs();
+        analogsOfVascularMedicine.add("lucetam");
+        analogsOfVascularMedicine.add("macsotropil");
+        return analogsOfVascularMedicine;
+    }
 }
