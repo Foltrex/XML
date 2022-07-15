@@ -5,12 +5,8 @@ import com.epam.xml.entity.version.*;
 import com.epam.xml.parser.XmlTag;
 import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class MedicineHandler extends DefaultHandler {

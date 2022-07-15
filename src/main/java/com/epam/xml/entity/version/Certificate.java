@@ -1,6 +1,8 @@
 package com.epam.xml.entity.version;
 
 import com.epam.xml.logic.DateAdapter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -8,6 +10,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
+@Data
+@NoArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Certificate", propOrder = {"number", "issueDate", "expiryDate"})
 public class Certificate {
@@ -20,10 +24,6 @@ public class Certificate {
     @XmlJavaTypeAdapter(DateAdapter.class)
     private Date expiryDate;
 
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
     public void setIssueDate(String issueDate) {
         this.issueDate = parseDate(issueDate);
     }
@@ -31,48 +31,6 @@ public class Certificate {
     public void setExpiryDate(String expiryDate) {
         this.expiryDate = parseDate(expiryDate);
     }
-
-
-    public String getNumber() {
-        return number;
-    }
-
-    public Date getIssueDate() {
-        return issueDate;
-    }
-
-    public Date getExpiryDate() {
-        return expiryDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Certificate)) {
-            return false;
-        }
-        Certificate that = (Certificate) o;
-        return Objects.equals(number, that.getNumber())
-                && Objects.equals(issueDate, that.getIssueDate())
-                && Objects.equals(expiryDate, that.getExpiryDate());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(number, issueDate, expiryDate);
-    }
-
-    @Override
-    public String toString() {
-        return "Certificate{" +
-                "number=" + number +
-                ", issueDate=" + issueDate +
-                ", expiryDate=" + expiryDate + '\'' +
-                '}';
-    }
-
     private Date parseDate(String info) {
         String[] words = info.split("[-/]");
         int year = Integer.parseInt(words[0]);

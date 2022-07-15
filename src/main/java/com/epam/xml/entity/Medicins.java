@@ -12,7 +12,7 @@ public class Medicins {
             @XmlElement(name = "heart-medicine", namespace = "http://www.epamcourses.by/medicins", type = HeartMedicine.class),
             @XmlElement(name = "vascular-medicine", namespace = "http://www.epamcourses.by/medicins", type = VascularMedicine.class)
     })
-    private List<Medicine> medicines = new ArrayList<>();
+    private final List<Medicine> medicines = new ArrayList<>();
 
     public boolean add(Medicine medicine) {
         return medicines.add(medicine);

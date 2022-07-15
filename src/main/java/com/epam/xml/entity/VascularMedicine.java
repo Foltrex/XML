@@ -2,6 +2,7 @@ package com.epam.xml.entity;
 
 import com.epam.xml.entity.version.Version;
 import com.epam.xml.entity.version.VersionName;
+import lombok.ToString;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

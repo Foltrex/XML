@@ -1,6 +1,9 @@
 package com.epam.xml.entity;
 
 import com.epam.xml.entity.version.Version;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
@@ -9,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Data
+@NoArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Medicine", propOrder = {"name", "group", "analogs", "versions"})
 @XmlSeeAlso({HeartMedicine.class, VascularMedicine.class})
@@ -26,9 +31,6 @@ public abstract class Medicine {
     @XmlElement(namespace = "http://www.epamcourses.by/medicins")
     private Versions versions;
 
-    public Medicine() {
-    }
-
     public Medicine(String id, String name, String group,
                     Analogs analogs, Versions versions) {
         this.id = id;
@@ -36,77 +38,5 @@ public abstract class Medicine {
         this.group = group;
         this.analogs = analogs;
         this.versions = versions;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
-    }
-
-    public void setAnalogs(Analogs analogs) {
-        this.analogs = analogs;
-    }
-
-    public void setVersions(Versions versions) {
-        this.versions = versions;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getGroup() {
-        return group;
-    }
-
-    public Analogs getAnalogs() {
-        return analogs;
-    }
-
-    public Versions getVersions() {
-        return versions;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Medicine)) {
-            return false;
-        }
-        Medicine medicine = (Medicine) o;
-        return id.equals(medicine.id)
-                && name.equals(medicine.name)
-                && group.equals(medicine.group)
-                && analogs.equals(medicine.analogs)
-                && versions.equals(medicine.versions);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, group, analogs, versions, versions);
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", group='" + group + '\'' +
-                ", analogs=" + analogs +
-                ", versions=" + versions +
-                '}';
     }
 }
